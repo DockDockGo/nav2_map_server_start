@@ -1,0 +1,4 @@
+# map_server_params.yaml
+map_server:
+    ros__parameters:
+        yaml_filename: "/home/amr-orin-0/mfi_amr_ws/src/nav2_map_server_start/maps/map.yaml"

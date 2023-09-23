@@ -8,7 +8,7 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             'map_file',
-            default_value='/home/sush/mfi/ros2_ws/bags/sep_16_data/map.yaml',  # Specify your default path here
+            default_value='/home/amr-orin-0/mfi_amr_ws/src/nav2_map_server_start/maps/map.yaml',  # Specify your default path here
             description='Full path to the .yaml file specifying the map',
         ),
         Node(
@@ -19,9 +19,5 @@ def generate_launch_description():
             parameters=[{'use_sim_time': False}],
             # remappings=[('/map', 'your_map_namespace/map')],
             arguments=[LaunchConfiguration('map_file')],
-        ),
-        LogInfo(
-            condition=launch.conditions.UnlessCondition(LaunchConfiguration('map_file')),
-            format="Using default map file path: '/home/sush/mfi/ros2_ws/bags/sep_16_data/map.yaml'.",
-        ),
+        )
     ])
