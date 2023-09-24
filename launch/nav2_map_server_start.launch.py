@@ -6,7 +6,6 @@ from launch_ros.actions import Node
 from launch.actions import ExecuteProcess
 from launch.substitutions import LaunchConfiguration
 from nav2_common.launch import RewrittenYaml
-from ament_index_python.packages import get_package_prefix
 import launch_ros.actions
 
 
@@ -14,12 +13,12 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     params_file = default=os.path.join(
-            get_package_prefix('nav2_map_server_start'),
+            get_package_share_directory('nav2_map_server_start'),
             'maps/', 'map_server_params.yaml')
     print("looking for params file in", params_file)
     
     map_file = default=os.path.join(
-            get_package_prefix('nav2_map_server_start'),
+            get_package_share_directory('nav2_map_server_start'),
             'maps/', 'map.yaml')
 
     parameters =  LaunchConfiguration('params_file', default=params_file)

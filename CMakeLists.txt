@@ -19,10 +19,15 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 # Install launch files
-install(
-  DIRECTORY launch
+install(DIRECTORY launch
+  maps
   DESTINATION share/${PROJECT_NAME}/
 )
+
+# Install map files
+# install(DIRECTORY maps
+#        DESTINATION share/${PROJECT_NAME}
+# )
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
