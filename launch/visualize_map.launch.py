@@ -47,7 +47,7 @@ def generate_launch_description():
                         'nav2_msgs/srv/LoadMap',
                         '{map_url: "' + map_file + '"}'
                     ],
-                    output='screen'
+                    # output='screen'
                 ),
             ],
         )

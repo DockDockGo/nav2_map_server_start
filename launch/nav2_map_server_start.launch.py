@@ -14,7 +14,7 @@ def generate_launch_description():
     ld = LaunchDescription()
     params_file = os.path.join(
             get_package_share_directory('nav2_map_server_start'),
-            'maps/', 'map_server_params.yaml')
+            'configs/', 'map_server_params.yaml')
     print("looking for params file in", params_file)
 
     map_file = os.path.join(
