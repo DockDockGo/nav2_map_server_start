@@ -12,12 +12,12 @@ import launch_ros.actions
 def generate_launch_description():
 
     ld = LaunchDescription()
-    params_file = default=os.path.join(
+    params_file = os.path.join(
             get_package_share_directory('nav2_map_server_start'),
             'maps/', 'map_server_params.yaml')
     print("looking for params file in", params_file)
-    
-    map_file = default=os.path.join(
+
+    map_file = os.path.join(
             get_package_share_directory('nav2_map_server_start'),
             'maps/', 'map.yaml')
 

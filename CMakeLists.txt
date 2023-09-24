@@ -21,6 +21,7 @@ find_package(ament_cmake REQUIRED)
 # Install launch files
 install(DIRECTORY launch
   maps
+  configs
   DESTINATION share/${PROJECT_NAME}/
 )
 
