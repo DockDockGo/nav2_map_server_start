@@ -15,7 +15,10 @@
 
   <export>
     <launch file="launch/nav2_map_server_start.launch.py"/>
+    <launch file="launch/nav2_bringup.launch.py"/>
+    <launch file="launch/nav2_custom_bringup.launch.py"/>
+    <launch file="launch/visualize_map.launch.py"/>
     <build_type>ament_cmake</build_type>
   </export>
-  
+
 </package>

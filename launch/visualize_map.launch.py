@@ -22,11 +22,30 @@ def generate_launch_description():
     map_file_path = LaunchConfiguration('map_path', default=map_default_path)
     map_file = map_file_path.perform(context=LaunchContext())
 
+    # Start only map server before rviz
     nav2_map_server_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
         get_package_share_directory('nav2_map_server_start'),
         'launch',
         'nav2_map_server_start.launch.py'
+        ))
+    )
+
+    # launch high level nav2_bringup (will launch stuff like AMCL too)
+    nav2_bringup_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(
+        get_package_share_directory('nav2_map_server_start'),
+        'launch',
+        'nav2_bringup.launch.py'
+        ))
+    )
+
+    # launch specific nav2 nodes we need for base navigation stack
+    nav2_custom_bringup_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(
+        get_package_share_directory('nav2_map_server_start'),
+        'launch',
+        'nav2_custom_bringup.launch.py'
         ))
     )
 
@@ -52,7 +71,9 @@ def generate_launch_description():
             ],
         )
 
-    ld.add_action(nav2_map_server_launch)
+    # ld.add_action(nav2_map_server_launch)
+    # ld.add_action(nav2_bringup_launch)
+    ld.add_action(nav2_custom_bringup_launch)
     ld.add_action(rviz_launch)
     ld.add_action(map_server_service_call)
 

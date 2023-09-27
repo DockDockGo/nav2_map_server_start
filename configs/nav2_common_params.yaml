@@ -1,3 +1,7 @@
+amcl:
+  ros__parameters:
+    enabled: False
+
 bt_navigator:
   ros__parameters:
     use_sim_time: False
@@ -162,7 +166,7 @@ local_costmap:
         enabled: True
         observation_sources: scan scan1
         scan:
-          topic: robot2/scan
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -190,7 +194,7 @@ global_costmap:
         enabled: True
         observation_sources: scan scan1
         scan:
-          topic: robot2/scan
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
