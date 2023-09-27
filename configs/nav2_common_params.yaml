@@ -1,9 +1,9 @@
 bt_navigator:
   ros__parameters:
-    use_sim_time: True
+    use_sim_time: False
     global_frame: map
-    robot_base_frame: base_link
-    odom_topic: /odom
+    robot_base_frame: robot2/base_link
+    odom_topic: robot2/odom
     bt_loop_duration: 10
     default_server_timeout: 20
     groot_zmq_publisher_port: 1666
@@ -55,11 +55,11 @@ bt_navigator:
 
 bt_navigator_navigate_through_poses_rclcpp_node:
   ros__parameters:
-    use_sim_time: True
+    use_sim_time: False
 
 bt_navigator_navigate_to_pose_rclcpp_node:
   ros__parameters:
-    use_sim_time: True
+    use_sim_time: False
 
 controller_server:
   ros__parameters:
@@ -69,7 +69,7 @@ controller_server:
     controller_plugin_types: ["neo_local_planner::NeoLocalPlanner"]
     goal_checker_plugins: ["general_goal_checker"]
     progress_checker_plugin: "progress_checker"
-    use_sim_time: True
+    use_sim_time: False
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
@@ -143,8 +143,8 @@ local_costmap:
     ros__parameters:
       update_frequency: 10.0
       publish_frequency: 1.0
-      global_frame: odom
-      robot_base_frame: base_footprint
+      global_frame: robot2/odom
+      robot_base_frame: robot2/base_footprint
       footprint_padding: 0.
       footprint:  "[ [0.45,0.4],[-0.45,0.4],[-0.45,-0.4],[0.45,-0.4] ]"
       rolling_window: true
@@ -162,19 +162,12 @@ local_costmap:
         enabled: True
         observation_sources: scan scan1
         scan:
-          topic: /scan
+          topic: robot2/scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
           sensor_frame: "lidar_1_link"
-        scan1:
-          topic: /scan2
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-          sensor_frame: "lidar_2_link"
       always_send_full_costmap: True
 
 
@@ -184,7 +177,7 @@ global_costmap:
       update_frequency: 0.4
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: base_footprint
+      robot_base_frame: robot2/base_footprint
       footprint_padding: 0.
       footprint:  "[ [0.45,0.4],[-0.45,0.4],[-0.45,-0.4],[0.45,-0.4] ]"
       use_sim_time: True
@@ -197,13 +190,7 @@ global_costmap:
         enabled: True
         observation_sources: scan scan1
         scan:
-          topic: /scan
-          max_obstacle_height: 2.0
-          clearing: True
-          marking: True
-          data_type: "LaserScan"
-        scan1:
-          topic: /scan2
+          topic: robot2/scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -219,12 +206,12 @@ global_costmap:
 
 map_server:
   ros__parameters:
-    use_sim_time: True
-    yaml_filename: "neo_track1.yaml"
+    use_sim_time: False
+    yaml_filename: "map.yaml"
 
 map_saver:
   ros__parameters:
-    use_sim_time: True
+    use_sim_time: False
     save_map_timeout: 5000
     free_thresh_default: 0.25
     occupied_thresh_default: 0.65
@@ -233,7 +220,7 @@ map_saver:
 planner_server:
   ros__parameters:
     expected_planner_frequency: 5.0
-    use_sim_time: True
+    use_sim_time: False
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
@@ -253,8 +240,8 @@ behavior_server:
       plugin: "nav2_behaviors/BackUp"
     wait:
       plugin: "nav2_behaviors/Wait"
-    global_frame: odom
-    robot_base_frame: base_link
+    global_frame: robot2/odom
+    robot_base_frame: robot2/base_link
     transform_timeout: 0.1
     use_sim_time: true
     simulate_ahead_time: 2.0
