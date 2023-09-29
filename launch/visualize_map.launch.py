@@ -71,9 +71,9 @@ def generate_launch_description():
             ],
         )
 
-    # ld.add_action(nav2_map_server_launch)
+    ld.add_action(nav2_map_server_launch)
     # ld.add_action(nav2_bringup_launch)
-    ld.add_action(nav2_custom_bringup_launch)
+    # ld.add_action(nav2_custom_bringup_launch)
     ld.add_action(rviz_launch)
     ld.add_action(map_server_service_call)
 
