@@ -29,7 +29,7 @@ def generate_launch_description():
     # Get the launch directory
     default_params_file = os.path.join(
             get_package_share_directory('nav2_map_server_start'),
-            'configs', 'nav2_default_params.yaml')
+            'configs', 'nav2_common_params.yaml')
 
     namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -37,11 +37,14 @@ def generate_launch_description():
     params_file = LaunchConfiguration('params_file')
     use_multi_robots = LaunchConfiguration('use_multi_robots')
 
+    #lifecycle_nodes = ['controller_server',
+    #                   'planner_server',
+    #                   'behaviour_tree_engine',
+    #                   'bt_navigator',
+    #                   'waypoint_follower']
+    
     lifecycle_nodes = ['controller_server',
-                       'planner_server',
-                       'behaviour_tree_engine',
-                       'bt_navigator',
-                       'waypoint_follower']
+                       'planner_server']
 
     remappings = [('/tf', 'tf'),
                   ('/tf_static', 'tf_static')]
@@ -96,27 +99,27 @@ def generate_launch_description():
                 output='screen',
                 parameters=[configured_params],
                 remappings=remappings),
-            Node(
-                package='nav2_recoveries',
-                executable='recoveries_server',
-                name='recoveries_server',
-                output='screen',
-                parameters=[configured_params],
-                remappings=remappings),
-            Node(
-                package='nav2_bt_navigator',
-                executable='bt_navigator',
-                name='bt_navigator',
-                output='screen',
-                parameters=[configured_params],
-                remappings=remappings),
-            Node(
-                package='nav2_waypoint_follower',
-                executable='waypoint_follower',
-                name='waypoint_follower',
-                output='screen',
-                parameters=[configured_params],
-                remappings=remappings),
+            #Node(
+            #    package='nav2_recoveries',
+            #    executable='recoveries_server',
+            #    name='recoveries_server',
+            #    output='screen',
+            #    parameters=[configured_params],
+            #    remappings=remappings),
+            #Node(
+            #    package='nav2_bt_navigator',
+            #    executable='bt_navigator',
+            #    name='bt_navigator',
+            #    output='screen',
+            #    parameters=[configured_params],
+            #    remappings=remappings),
+            #Node(
+            #    package='nav2_waypoint_follower',
+            #    executable='waypoint_follower',
+            #    name='waypoint_follower',
+            #    output='screen',
+            #    parameters=[configured_params],
+            #   remappings=remappings),
             Node(
                 package='nav2_lifecycle_manager',
                 executable='lifecycle_manager',

@@ -132,9 +132,9 @@ local_costmap:
         z_voxels: 16
         max_obstacle_height: 2.0
         mark_threshold: 0
-        observation_sources: scan
-        scan:
-          topic: robot2/scan
+        observation_sources: scan_1
+        scan_1:
+          topic: robot2/lidar_1/scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -164,9 +164,9 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        observation_sources: scan
-        scan:
-          topic: robot2/scan
+        observation_sources: scan_1
+        scan_1:
+          topic: robot2/lidar_1/scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -226,8 +226,8 @@ recoveries_server:
       plugin: "nav2_recoveries/BackUp"
     wait:
       plugin: "nav2_recoveries/Wait"
-    global_frame: odom
-    robot_base_frame: base_link
+    global_frame: robot2/odom
+    robot_base_frame: robot2/base_link
     transform_timeout: 0.1
     use_sim_time: False
     simulate_ahead_time: 2.0
